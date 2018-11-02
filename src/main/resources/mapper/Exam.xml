@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.exam.sp.EXAM">
+<select id="selectExamList" resultType="com.exam.sp.vo.Exam">
+	select * from exam_info
+</select>
+<select id="selectExam" resultType="com.exam.sp.vo.Exam">
+	select * from exam_info
+	where exnum=#{exnum}
+</select>
+<insert id="insertExam" parameterType="com.exam.sp.vo.Exam">
+	insert into exam_info(exname,exage)
+	values(#{exname},#{exage})
+</insert>
+<update id="updateExam" parameterType="com.exam.sp.vo.Exam">
+	update exam_info
+	<set>
+		<if test="exname!=null">exname=#{exname},</if>
+		<if test="exage!=null">exage=#{exage},</if>
+	</set>
+	where exnum=#{exnum}
+</update>
+
+<delete id="deleteExam" parameterType="com.exam.sp.vo.Exam">
+delete from exam_info
+where exnum=#{exnum}
+</delete>
+</mapper>
